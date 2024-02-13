@@ -20,8 +20,8 @@ export default function Home() {
         alt=""
         className="w w-full h-full cover fixed top-0 left-0 right-0 bottom-0 z-[-1]"
         src="/vette.jpg"
-        height={100}
-        width={100}
+        height={1080}
+        width={1920}
       />
       <Link href="/win">hello</Link> <Link href="/Newpage">Newpage</Link>
       <div className="bg-green-800 transition-all duration-500 hover:text-red-500 hover:scale-150">

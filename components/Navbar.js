@@ -258,11 +258,6 @@ export default function Navbar() {
                   href="https://ahuraai.com/"
                   className="flex-shrink-0 flex items-center h-50px w-[200px] hover:bg-black/90 transition-all duration-200 rounded-md p-2"
                 >
-                  <Image width={100} height={100}
-                    className="block nav-logo  h-8 w-auto"
-                    src="https://21472314.fs1.hubspotusercontent-na1.net/hubfs/21472314/Ahura-Logo-horiz300px.png"
-                    alt="Your Company"
-                  />
                 </a>
               </div>
               {/* Nav Items */}
