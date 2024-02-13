@@ -16,7 +16,7 @@ export default function Home() {
         height="auto"
         width="auto"
       />
-      <a href="/win">hello</a>
+      <a href="/win">hello</a> <a href="/Newpage">Newpage</a>
       <div className="bg-green-800 transition-all duration-500 hover:text-red-500 hover:scale-150">
         green is a great color
       </div>  <a rel="noopener" target="_blank" href="https://www.topgear.com/car-reviews/chevrolet/2dr/first-drive">this is my first job </a>
