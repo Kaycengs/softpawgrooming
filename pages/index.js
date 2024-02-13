@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import autoprefixer from "autoprefixer";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,16 +11,17 @@ export default function Home() {
       className=" uppercase font-semibold min-h-screen min-w-screen flex flex-col align-middle justify-center text-blue-800 text-2xl text-center
 "
     >
-      <img
+      <Image 
+        alt=""
         className="w w-full h-full cover fixed top-0 left-0 right-0 bottom-0 z-[-1]"
         src="/vette.jpg"
         height="auto"
         width="auto"
       />
-      <a href="/win">hello</a> <a href="/Newpage">Newpage</a>
+      <Link href="/win">hello</Link> <Link href="/Newpage">Newpage</Link>
       <div className="bg-green-800 transition-all duration-500 hover:text-red-500 hover:scale-150">
         green is a great color
-      </div>  <a rel="noopener" target="_blank" href="https://www.topgear.com/car-reviews/chevrolet/2dr/first-drive">this is my first job </a>
+      </div>  <Link rel="noopener" target="_blank" href="https://www.topgear.com/car-reviews/chevrolet/2dr/first-drive">this is my first job </Link>
     </div>
   );
 }
