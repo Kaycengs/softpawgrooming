@@ -15,7 +15,7 @@ const ItemWithFadeIn = ({
   const [itemsVisible, setItemsVisible] = useState(false);
 
   useEffect(() => {
-    const delay = 100 * i; // Delay between each item appearance (in ms)
+    const delay = 1000 * i; // Delay between each item appearance (in ms)
     const timeout = setTimeout(() => {
       setItemsVisible(true);
     }, delay);
@@ -31,7 +31,7 @@ const ItemWithFadeIn = ({
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-      const delay = 100 * index;
+      const delay = 1000 * index;
       const timeout = setTimeout(() => setIsVisible(true), delay);
       return () => clearTimeout(timeout);
     }, [index]);
@@ -97,41 +97,31 @@ const ItemWithFadeIn = ({
 // Placeholder JSON data for navigation
 const navigationData = [
   {
-    name: 'Solutions',
+    name: 'Services',
     dropdown: [
       {
-        name: 'AI Tutor',
-        dropdown: [
-          {
-            name: 'Features & Use Cases',
-            href: 'https://ahuraai.com/solutions/',
-          },
-          {
-            name: 'Benefits & Learning',
-            href: 'https://ahuraai.com/solutions/top-uses-for-learners/',
-          },
-          {
-            name: 'Benefits For Supervisors',
-            href: 'https://ahuraai.com/solutions/top-uses-for-managers/',
-          },
-        ],
+        name: 'service 1',
+        
       },
       {
-        name: 'Manger Gen AI Training',
-        href: 'https://21472314.hs-sites.com/gen-ai-mgr-training',
+        name: 'service 2',
+        
       },
       {
-        name: 'Events On Responsible Tech',
-        dropdown: [
-          {
-            name: 'Davos 2024: The AI & Crypto Lounge',
-            href: 'https://info.ahuraai.com/davos2024',
-          },
-          {
-            name: 'Necker Legacy Guardians',
-            href: 'https://info.ahuraai.com/legacyguardians',
-          },
-        ],
+        name: 'service 3',
+      
+      },
+      {
+        name: 'service 4',
+      
+      },
+      {
+        name: 'service 5',
+      
+      },
+      {
+        name: 'service 6',
+      
       },
     ],
   },
@@ -224,11 +214,11 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="custom-navbar bg-black/80 absolute z-[1000] transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-black/80"
+      className="custom-navbar bg-black/80 absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-orange-700"
     >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-fill px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               {/* Mobile menu button and company logo */}
               <div className="relative inset-y-0 left-0 flex items-center ">
@@ -277,7 +267,7 @@ export default function Navbar() {
                           <a
                             href={navItem.href}
                             className={classNames(
-                              'text-[#FFF] hover:bg-black/80 hover:text-white transition-all duration-200',
+                              'text-[#d9ff3f] hover:bg-black/20 hover:text-yellow-500 transition-all duration-200',
                               'rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize',
                             )}
                           >
@@ -286,7 +276,7 @@ export default function Navbar() {
                         ) : (
                           <Menu.Button
                             className={classNames(
-                              'text-[#FFF] hover:bg-black/80 hover:text-white transition-all duration-200',
+                              'text-[#5927ff] hover:bg-black/80 hover:text-white transition-all duration-1000',
                               'rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize',
                             )}
                           >
