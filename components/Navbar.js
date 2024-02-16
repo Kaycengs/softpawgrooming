@@ -118,7 +118,6 @@ const navigationData = [
       {
         name: "Extras",
       },
-      
     ],
   },
 
@@ -127,8 +126,6 @@ const navigationData = [
   ,
   {
     name: "Whos the stylist",
-    href: "/stylist.js"
-,
   },
 ];
 
@@ -191,33 +188,23 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="custom-navbar bg-[#7b4a9e]/50 absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-pink-400"
+      className="custom-navbar bg-[#922098] absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-pink-600"
     >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-fill px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               {/* Mobile menu button and company logo */}
-              <div className="relative inset-y-0 left-0 flex items-center ">
+              <div className="relative inset-y-2 left-0 flex items-center ">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="mobile-menu-hide inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-black/80 transition-all duration-200 focus:outline-none ">
+                <Disclosure.Button className="hover:rotate-12 duration-700">
+                  <Image
+                    alt="Logo"
+                    src="/smalllogo.png"
+                    height={1}
+                    width={100}
+                  />
                   <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <div
-                      className="block h-fit w-fit text-xl p-2"
-                      onClick={() => [setOpen(false), setOpenItems([])]}
-                    >
-                      <FaChevronUp />{" "}
-                      <div className="fixed top-0 right-0 left-0 bottom-0 z-[-1] bg-black/50"></div>
-                    </div> // Icon for closing menu
-                  ) : (
-                    <div
-                      className="block h-fit w-fit text-xl p-2"
-                      onClick={() => setOpen(true)}
-                    >
-                      <FaBars />
-                    </div> // Icon for opening menu
-                  )}
                 </Disclosure.Button>
               </div>
 
@@ -435,11 +422,13 @@ export default function Navbar() {
                               )}
                             </a>
                           </ItemWithFadeIn>
+                          
                         ))}
                       </div>
                     )}
                   </div>
-                </ItemWithFadeIn>
+                </ItemWithFadeIn>                 
+              
               ))}
             </div>
           </Disclosure.Panel>
@@ -448,3 +437,10 @@ export default function Navbar() {
     </Disclosure>
   );
 }
+; <Image
+alt="Logo"
+src="/dog bath.gif"
+height={1080}
+width={1920}
+className="bottom-0 absolute z-1000"
+/>
