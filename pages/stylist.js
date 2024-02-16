@@ -1,2 +1,7 @@
+import React from "react";
 
-<div>hello</div>
+const stylist = () => {
+  return <div>hello</div>;
+};
+
+export default stylist;
