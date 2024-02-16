@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FaBars, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Image from "next/image";
+import { textAlign, textStyle } from "styled-system";
 
 const ItemWithFadeIn = ({
   item,
@@ -126,7 +127,8 @@ const navigationData = [
   ,
   {
     name: "Whos the stylist",
-    href: "/win.js",
+    href: "/stylist.js"
+,
   },
 ];
 
@@ -236,7 +238,7 @@ export default function Navbar() {
                           <a
                             href={navItem.href}
                             className={classNames(
-                              "text-pink-400 hover:bg-purple/20 hover:text-[#ffc0cfa0] transition-all duration-1000",
+                              "text-pink-400 hover:hue-rotate-180 transition-all duration-500",
                               "rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
                             )}
                           >
@@ -245,7 +247,7 @@ export default function Navbar() {
                         ) : (
                           <Menu.Button
                             className={classNames(
-                              "text-[#c892e1] hover:bg-purple/20 hover:text-[#ffc0cfa0] transition-all duration-1000",
+                              "text-pink-400 hover:hue-rotate-180 transition-all duration-500",
                               "rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize"
                             )}
                           >
