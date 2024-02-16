@@ -225,7 +225,7 @@ export default function Navbar() {
                           <a
                             href={navItem.href}
                             className={classNames(
-                              "text-pink-400 hover:hue-rotate-180 transition-all duration-500",
+                              "text-pink-400 hover:hue-rotate-180 transition-all duration-700",
                               "rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
                             )}
                           >
@@ -234,7 +234,7 @@ export default function Navbar() {
                         ) : (
                           <Menu.Button
                             className={classNames(
-                              "text-pink-400 hover:hue-rotate-180 transition-all duration-500",
+                              "text-pink-400 hover:hue-rotate-180 transition-all duration-700",
                               "rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize"
                             )}
                           >
@@ -325,20 +325,18 @@ export default function Navbar() {
               </div>
 
               {/* CTA button */}
-              <div className="hover:bg-black/90 rounded-md px-2 py-2 CTA-hide transition-all duration-200">
-                {" "}
+              <div className=" scale-125 rounded-lg px-3 py-3 CTA-hide transition-all duration-400">
                 <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0 bg-clip-text bg-white  ">
                   <a
                     href=""
-                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-bold rounded-md  "
+                    className="scale-x-100 scale-y-100 inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110 duration-700"
                     style={{
-                      background:
-                        "linear-gradient(90deg, #E7326A -0.59%, #FF292F 21.06%, #FF7B01 49.62%, #F2DE02 75.41%, #AEF61C 86.46%)",
+                      background: "-webkit-linear-gradient(#9999, #555);",
                       backgroundClip: "text",
                       color: "transparent",
                     }}
                   >
-                    Book An Appointment
+                    Request Appointment
                   </a>
                 </div>
               </div>
@@ -422,13 +420,11 @@ export default function Navbar() {
                               )}
                             </a>
                           </ItemWithFadeIn>
-                          
                         ))}
                       </div>
                     )}
                   </div>
-                </ItemWithFadeIn>                 
-              
+                </ItemWithFadeIn>
               ))}
             </div>
           </Disclosure.Panel>
@@ -437,10 +433,3 @@ export default function Navbar() {
     </Disclosure>
   );
 }
-; <Image
-alt="Logo"
-src="/dog bath.gif"
-height={1080}
-width={1920}
-className="bottom-0 absolute z-1000"
-/>
