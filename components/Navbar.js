@@ -1,7 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { FaBars, FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import Image from 'next/image';
+import React, { Fragment, useState, useEffect } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { FaBars, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import Image from "next/image";
 
 const ItemWithFadeIn = ({
   item,
@@ -23,7 +23,7 @@ const ItemWithFadeIn = ({
   }, [i]);
   const handleClick = (e) => {
     e.stopPropagation();
-    if (action === 'expand') {
+    if (action === "expand") {
       handleToggleOpen(item.name);
     }
   };
@@ -39,7 +39,7 @@ const ItemWithFadeIn = ({
     return (
       <div
         key={nestedItem.name}
-        className={`pl-4 ${isVisible ? 'fade-in active' : 'fade-in'}`}
+        className={`pl-4 ${isVisible ? "fade-in active" : "fade-in"}`}
         onClick={(e) => {
           e.stopPropagation();
           if (nestedItem.dropdown) {
@@ -80,12 +80,12 @@ const ItemWithFadeIn = ({
     <div
       key={item.slug}
       className={`mx-auto flex flex-col ${
-        itemsVisible ? 'fade-in active' : 'fade-in'
+        itemsVisible ? "fade-in active" : "fade-in"
       }`}
       onClick={handleClick}
     >
-      {action === 'expand' && children}
-      {action === 'link' && <a href={item.href}>{children}</a>}
+      {action === "expand" && children}
+      {action === "link" && <a href={item.href}>{children}</a>}
       {/* Render nested dropdown if it exists */}
       {item.dropdown &&
         dropdownItem &&
@@ -97,73 +97,48 @@ const ItemWithFadeIn = ({
 // Placeholder JSON data for navigation
 const navigationData = [
   {
-    name: 'Services',
+    name: "Services",
     dropdown: [
       {
-        name: 'service 1',
-        
+        name: "Bath",
       },
       {
-        name: 'service 2',
-        
+        name: "Tidy Up",
       },
       {
-        name: 'service 3',
+        name: "Nail Trim",
+      },
+      {
+        name: "Full Grooms",
+      },
+      {
+        name: "Cats",
+      },
+      {
+        name: "Extras",
+      },
       
-      },
-      {
-        name: 'service 4',
-      
-      },
-      {
-        name: 'service 5',
-      
-      },
-      {
-        name: 'service 6',
-      
-      },
     ],
   },
 
+  ,
+  ,
+  ,
   {
-    name: 'Privacy and Data',
-    dropdown: [
-      { name: 'Privacy Policy', href: 'https://ahura.ai/privacy-policy' },
-      { name: 'Terms of Use', href: 'https://ahura.ai/terms-and-conditions' },
-    ],
-  },
-  {
-    name: 'Thinking',
-    dropdown: [
-      { name: 'Success Stories', href: 'https://ahuraai.com/success-stories/' },
-      { name: 'Articles', href: 'https://ahuraai.com/blog/' },
-      { name: 'How I Learn', href: 'https://ahuraai.com/blog/how-i-learn/' },
-    ],
-  },
-  {
-    name: 'Product',
-    dropdown: [
-      { name: 'Ahura 2.0', href: 'https://info.ahuraai.com/product' },
-      { name: 'Product', href: 'https://ahura.ai/' },
-      { name: 'Get A Demo', href: 'https://ahuraai.com/signup/' },
-    ],
-  },
-  {
-    name: 'Team',
-    href: 'https://ahuraai.com/company/',
+    name: "Whos the stylist",
+    href: "/win.js",
   },
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
   const [expandDropdown, setExpandDropdown] = useState(
     navigationData.map((navItem) =>
-      navItem.dropdown ? new Array(navItem.dropdown.length).fill(false) : [],
-    ),
+      navItem.dropdown ? new Array(navItem.dropdown.length).fill(false) : []
+    )
   );
   const [isOpen, setOpen] = useState(false);
   const handleNavOpen = (isOpen) => {
@@ -208,13 +183,13 @@ export default function Navbar() {
           return newSubArray;
         }
         return subArray;
-      }),
+      })
     );
   };
   return (
     <Disclosure
       as="nav"
-      className="custom-navbar bg-black/80 absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-orange-700"
+      className="custom-navbar bg-[#7b4a9e]/50 absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-pink-400"
     >
       {({ open }) => (
         <>
@@ -230,7 +205,7 @@ export default function Navbar() {
                       className="block h-fit w-fit text-xl p-2"
                       onClick={() => [setOpen(false), setOpenItems([])]}
                     >
-                      <FaChevronUp />{' '}
+                      <FaChevronUp />{" "}
                       <div className="fixed top-0 right-0 left-0 bottom-0 z-[-1] bg-black/50"></div>
                     </div> // Icon for closing menu
                   ) : (
@@ -243,13 +218,7 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="desktop-menu flex items-center justify-between w-fit sm:items-stretch">
-                <a
-                  href="https://ahuraai.com/"
-                  className="flex-shrink-0 flex items-center h-50px w-[200px] hover:bg-black/90 transition-all duration-200 rounded-md p-2"
-                >
-                </a>
-              </div>
+
               {/* Nav Items */}
               <div className="hidden sm:ml-6 md:block">
                 <div className="flex space-x-4 mobile-menu-button">
@@ -260,15 +229,15 @@ export default function Navbar() {
                       className="relative inline-block text-left"
                       key={navItem.name}
                     >
-                      <div className="flex items-center">
-                        {' '}
+                      <div className="flex right-0">
+                        {" "}
                         {/* Add flex alignment styles here */}
                         {navItem.href ? (
                           <a
                             href={navItem.href}
                             className={classNames(
-                              'text-[#d9ff3f] hover:bg-black/20 hover:text-yellow-500 transition-all duration-200',
-                              'rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize',
+                              "text-pink-400 hover:bg-purple/20 hover:text-[#ffc0cfa0] transition-all duration-1000",
+                              "rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
                             )}
                           >
                             {navItem.name}
@@ -276,8 +245,8 @@ export default function Navbar() {
                         ) : (
                           <Menu.Button
                             className={classNames(
-                              'text-[#5927ff] hover:bg-black/80 hover:text-white transition-all duration-1000',
-                              'rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize',
+                              "text-[#c892e1] hover:bg-purple/20 hover:text-[#ffc0cfa0] transition-all duration-1000",
+                              "rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize"
                             )}
                           >
                             {navItem.name}
@@ -304,8 +273,8 @@ export default function Navbar() {
                                       <a
                                         href={dropdownItem.href}
                                         className={classNames(
-                                          active ? 'bg-black/80' : '',
-                                          'block px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200 hover:no-underline',
+                                          active ? "bg-black/80" : "",
+                                          "block px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200 hover:no-underline"
                                         )}
                                       >
                                         {dropdownItem.name}
@@ -317,20 +286,20 @@ export default function Navbar() {
                                             e.preventDefault(),
                                             handleDropdownToggle(
                                               dropdownItem.name,
-                                              e,
+                                              e
                                             ),
                                           ],
                                         ]}
                                         className={classNames(
-                                          active ? 'bg-black/80' : '',
-                                          'cursor-pointer  px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200 flex flex-row',
+                                          active ? "bg-black/80" : "",
+                                          "cursor-pointer  px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200 flex flex-row"
                                         )}
                                       >
-                                        {dropdownItem.name}{' '}
+                                        {dropdownItem.name}{" "}
                                         <FaChevronDown
                                           className={`my-auto ml-4 transition-all duration-100 ${
                                             expandedDropdown ===
-                                              dropdownItem.name && 'rotate-180 '
+                                              dropdownItem.name && "rotate-180 "
                                           }`}
                                         />
                                       </div>
@@ -345,8 +314,8 @@ export default function Navbar() {
                                         {({ active }) => (
                                           <div
                                             className={classNames(
-                                              active ? 'bg-black/80' : '',
-                                              'ml-4 cursor-pointer block px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200',
+                                              active ? "bg-black/80" : "",
+                                              "ml-4 cursor-pointer block px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200"
                                             )}
                                           >
                                             <a href={subDropdownItem.href}>
@@ -355,7 +324,7 @@ export default function Navbar() {
                                           </div>
                                         )}
                                       </Menu.Item>
-                                    ),
+                                    )
                                   )}
                               </Fragment>
                             ))}
@@ -368,19 +337,19 @@ export default function Navbar() {
 
               {/* CTA button */}
               <div className="hover:bg-black/90 rounded-md px-2 py-2 CTA-hide transition-all duration-200">
-                {' '}
+                {" "}
                 <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0 bg-clip-text bg-white  ">
                   <a
-                    href="https://ahuraai.com/signup/"
+                    href=""
                     className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-bold rounded-md  "
                     style={{
                       background:
-                        'linear-gradient(90deg, #E7326A -0.59%, #FF292F 21.06%, #FF7B01 49.62%, #F2DE02 75.41%, #AEF61C 86.46%)',
-                      backgroundClip: 'text',
-                      color: 'transparent',
+                        "linear-gradient(90deg, #E7326A -0.59%, #FF292F 21.06%, #FF7B01 49.62%, #F2DE02 75.41%, #AEF61C 86.46%)",
+                      backgroundClip: "text",
+                      color: "transparent",
                     }}
                   >
-                    Get A Demo
+                    Book An Appointment
                   </a>
                 </div>
               </div>
@@ -396,18 +365,18 @@ export default function Navbar() {
                   item={navItem}
                   handleToggleOpen={handleToggleOpen}
                   i={i}
-                  action={navItem.dropdown ? 'expand' : 'link'}
+                  action={navItem.dropdown ? "expand" : "link"}
                   openItems={openItems}
                 >
                   <div key={navItem.name} className="py-1">
                     <Disclosure.Button
                       className={classNames(
                         navItem.current
-                          ? 'bg-black/[.85] text-white'
-                          : 'text-gray-300 hover:bg-black/80 hover:text-white',
-                        'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
+                          ? "bg-black/[.85] text-white"
+                          : "text-gray-300 hover:bg-black/80 hover:text-white",
+                        "block px-3 py-2 rounded-md text-base font-medium transition-all duration-200"
                       )}
-                      aria-haspopup={navItem.dropdown ? 'true' : undefined}
+                      aria-haspopup={navItem.dropdown ? "true" : undefined}
                       onClick={(e) => {
                         if (!navItem.href) {
                           [
@@ -430,7 +399,7 @@ export default function Navbar() {
                           {navItem.name}
                           <FaChevronDown
                             className={`my-auto ml-4 transition-all duration-100 ${
-                              openItems.includes(navItem.name) && 'rotate-180'
+                              openItems.includes(navItem.name) && "rotate-180"
                             }`}
                           />
                         </span>
@@ -446,7 +415,7 @@ export default function Navbar() {
                             dropdownItem={dropdownItem}
                             handleToggleOpen={handleToggleOpen}
                             i={i}
-                            action={dropdownItem.dropdown ? 'expand' : 'link'}
+                            action={dropdownItem.dropdown ? "expand" : "link"}
                             openItems={openItems}
                           >
                             <a
@@ -458,7 +427,7 @@ export default function Navbar() {
                                 <FaChevronDown
                                   className={`my-auto ml-4 transition-all duration-100 ${
                                     openItems.includes(dropdownItem.name) &&
-                                    'rotate-180 '
+                                    "rotate-180 "
                                   }`}
                                 />
                               )}
