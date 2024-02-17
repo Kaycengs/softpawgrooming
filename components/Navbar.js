@@ -426,7 +426,7 @@ export default function Navbar() {
                           >
                             <a
                               href={dropdownItem.href}
-                              className=" text-gray-300 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium flex flex-row"
+                              className=" text-gray-300 hover:bg-black/20 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium flex flex-row"
                             >
                               {dropdownItem.name}
                               {dropdownItem.dropdown && (
