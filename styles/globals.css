@@ -36,18 +36,23 @@ body {
 }
 
 .video-container {
-  overflow: hidden;
-  border-radius: 20px; /* Adjust as needed */
-  position: relative;
-  height: 100vmin;
-  width: 100vmin;
-}
-.video-iframe {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0px);
+  pointer-events: none;
+  position:fill,  ;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 70%;
-  border: none;
+  height: 56.25vw; /* 16:9 aspect ratio (9/16 * 100) */
+  max-height: 100%;
+  z-index: 0;
+  background-color: black; /* Optional: Set a background color */
 }
+
+.video-iframe {
+  position: fill ;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+  
+

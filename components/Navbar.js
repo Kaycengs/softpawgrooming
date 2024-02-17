@@ -58,7 +58,7 @@ const ItemWithFadeIn = ({
         }}
       >
         {nestedItem.dropdown ? (
-          <div className="cursor-pointer">
+          <div className="cursor-pointer ">
             {nestedItem.name}
             {openItems.includes(nestedItem.name) &&
               renderNestedDropdown(nestedItem.dropdown)}
@@ -66,7 +66,7 @@ const ItemWithFadeIn = ({
         ) : (
           <a
             href={nestedItem.href}
-            className="block text-gray-400 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium"
+            className="block text-gray-400 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium "
           >
             - {nestedItem.name}
           </a>
@@ -89,7 +89,7 @@ const ItemWithFadeIn = ({
   return (
     <div
       key={item.slug}
-      className={`mx-auto flex flex-col ${
+      className={`mx-auto flex flex-co ${
         itemsVisible ? "fade-in active" : "fade-in"
       }`}
       onClick={handleClick}
@@ -244,13 +244,13 @@ export default function Navbar() {
               {/* Mobile menu button and company logo */}
               <div className="relative inset-y-2 left-0 flex h-[50px] items-center ">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="hover:rotate-12 duration-700 flex">
+                <Disclosure.Button className="hover:rotate-12 duration-700 flex ">
                   <Image
                     alt="Logo"
                     src="/smalllogo.png"
-                    className="mx-auto"
-                    height={1}
-                    width={100}
+                    className="mx-auto scale-50   "
+                    height={10}
+                    width={80}
                   />
                 </Disclosure.Button>
                 <a
