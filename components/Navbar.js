@@ -10,9 +10,9 @@ import {
   FaPaw,
 } from "react-icons/fa";
 import Image from "next/image";
-import { textAlign, textStyle } from "styled-system";
 import { PiDogFill, PiScissors } from "react-icons/pi";
 import Link from "next/link";
+
 const ItemWithFadeIn = ({
   item,
   dropdownItem,
@@ -31,12 +31,14 @@ const ItemWithFadeIn = ({
     }, delay);
     return () => clearTimeout(timeout);
   }, [i]);
+
   const handleClick = (e) => {
     e.stopPropagation();
     if (action === "expand") {
       handleToggleOpen(item.name);
     }
   };
+
   const NestedItemWithFadeIn = ({ nestedItem, handleToggleOpen, index }) => {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -58,7 +60,7 @@ const ItemWithFadeIn = ({
         }}
       >
         {nestedItem.dropdown ? (
-          <div className="cursor-pointer ">
+          <div className="cursor-pointer">
             {nestedItem.name}
             {openItems.includes(nestedItem.name) &&
               renderNestedDropdown(nestedItem.dropdown)}
@@ -66,7 +68,7 @@ const ItemWithFadeIn = ({
         ) : (
           <a
             href={nestedItem.href}
-            className="block text-gray-400 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium "
+            className="block text-gray-400 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium"
           >
             - {nestedItem.name}
           </a>
@@ -95,7 +97,7 @@ const ItemWithFadeIn = ({
       onClick={handleClick}
     >
       {action === "expand" && children}
-      {action === "link" && <a href={item.href}>{children}</a>}
+      {action === "Link" && <a href={item.href}>{children}</a>}
       {/* Render nested dropdown if it exists */}
       {item.dropdown &&
         dropdownItem &&
@@ -114,7 +116,7 @@ const navigationData = [
         name: "Bath",
         dropdown: [
           {
-            name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume ",
+            name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume",
             href: "/",
           },
         ],
@@ -166,10 +168,6 @@ const navigationData = [
       },
     ],
   },
-
-  ,
-  ,
-  ,
   {
     name: "Whos the stylist",
     href: "/stylist",
@@ -181,91 +179,72 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const [expandDropdown, setExpandDropdown] = useState(
-    navigationData.map((navItem) =>
-      navItem.dropdown ? new Array(navItem.dropdown.length).fill(false) : []
-    )
-  );
-  const [isOpen, setOpen] = useState(false);
-  const handleNavOpen = (isOpen) => {
-    setOpen(isOpen);
-  };
   const [openItems, setOpenItems] = useState([]);
 
   const handleToggleOpen = (itemName) => {
     setOpenItems((currentOpenItems) => {
       if (currentOpenItems.includes(itemName)) {
-        // Remove the item if it's already in the array
         return currentOpenItems.filter((item) => item !== itemName);
-      } else if (currentOpenItems.length === 0) {
-        // If there are no items, add the new one
-        return [itemName];
-      } else if (currentOpenItems.length === 1) {
-        // If there's only one item, add the new one alongside it
-        return [...currentOpenItems, itemName];
       } else {
-        // If there are two or more items, replace the last item
-        return [currentOpenItems[0], itemName];
+        return [...currentOpenItems, itemName];
       }
     });
   };
 
-  const [expandedDropdown, setExpandedDropdown] = useState(null);
-
-  const handleDropdownToggle = (dropdownName) => {
-    if (expandedDropdown === dropdownName) {
-      setExpandedDropdown(null); // Close if it's already open
-    } else {
-      setExpandedDropdown(dropdownName); // Open the clicked dropdown
-    }
+  const renderNestedDropdown = (nestedItems) => {
+    return nestedItems.map((nestedItem, nestedIndex) => (
+      <ItemWithFadeIn
+        key={nestedIndex}
+        item={nestedItem}
+        dropdownItem={nestedItem}
+        handleToggleOpen={handleToggleOpen}
+        i={nestedIndex}
+        action={nestedItem.dropdown ? "expand" : "link"}
+        openItems={openItems}
+      >
+        <a
+          href={nestedItem.href}
+          className="text-gray-300 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium flex flex-row"
+        >
+          {nestedItem.name}
+          {nestedItem.dropdown && (
+            <FaChevronDown
+              className={`my-auto ml-4 transition-all duration-100 ${
+                openItems.includes(nestedItem.name) && "rotate-12"
+              }`}
+            />
+          )}
+        </a>
+      </ItemWithFadeIn>
+    ));
   };
 
-  const handleDropdownClick = (navIndex, dropdownIndex) => {
-    setExpandDropdown(
-      expandDropdown.map((subArray, idx) => {
-        if (idx === navIndex) {
-          const newSubArray = [...subArray];
-          newSubArray[dropdownIndex] = !newSubArray[dropdownIndex];
-          return newSubArray;
-        }
-        return subArray;
-      })
-    );
-  };
   return (
-    <Disclosure
-      as="nav"
-      className="custom-navbar bg-[#922098] absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-pink-600"
-    >
+    <Disclosure as="nav" className="custom-navbar">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-fill px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               {/* Mobile menu button and company logo */}
-              <div className="relative inset-y-0 left-0 flex h-[50px] items-center ">
+              <div className="relative inset-y-0 left-0 flex h-[50px] items-center">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="s rounded-2xl translate-y-0 translate-x-0 hover:rotate-12 duration-700 flex ">
+                <Disclosure.Button className="flex">
                   <Image
                     alt="Logo"
                     src="/smalllogo.png"
-                    className=" "
-                    height={40}
-                    width={40}
+                    className="h-8 w-8"
+                    height={32}
+                    width={32}
                   />
                 </Disclosure.Button>
-                <a
-                  className="hover:rotate-12 duration-700 text-4xl my-auto h-full self-center flex"
-                  href="/"
-                >
-                  {" "}
-                  <FaHome className=" translate-x-3 translate-y-3 text-pink-600" />{""}
-                  <span className="right-10  sr-only">Open main menu</span>
-                </a>
+                <Link href="/" className="text-4xl my-auto h-full self-center flex">
+                  <FaHome className="text-pink-600" />
+                </Link>
               </div>
 
               {/* Nav Items */}
               <div className="hidden sm:ml-6 md:block">
-                <div className="flex space-x-4 mobile-menu-button">
+                <div className="flex space-x-4">
                   {/* Desktop */}
                   {navigationData.map((navItem, navIndex) => (
                     <Menu
@@ -273,15 +252,12 @@ export default function Navbar() {
                       className="relative inline-block text-left"
                       key={navItem.name}
                     >
-                      <div className="flex right-0">
-                        {" "}
-                        {/* Add flex alignment styles here */}
+                      <div className="flex">
                         {navItem.href ? (
                           <a
                             href={navItem.href}
                             className={classNames(
-                              "text-pink-400 hover:hue-rotate-12 transition-all duration-700",
-                              "rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
+                              "text-pink-400 rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
                             )}
                           >
                             {navItem.name}
@@ -289,8 +265,7 @@ export default function Navbar() {
                         ) : (
                           <Menu.Button
                             className={classNames(
-                              "text-pink-400 hover:hue-rotate-12 transition-all duration-700",
-                              "rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize"
+                              "text-pink-400 rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize"
                             )}
                           >
                             {navItem.name}
@@ -307,7 +282,7 @@ export default function Navbar() {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute left-[50%] translate-x-[-50%] mt-5 w-[300px] origin-top-left rounded-md bg-black/80 shadow-lg shadow-black/80 ring-1 ring-black ring-opacity-5 focus:outline-none.">
+                        <Menu.Items className="absolute left-[50%] translate-x-[-50%] mt-5 w-[300px] origin-top-left rounded-md bg-black/80 shadow-lg shadow-black/80 ring-1 ring-black ring-opacity-5 focus:outline-none">
                           {navItem.dropdown &&
                             navItem.dropdown.map((dropdownItem, i) => (
                               <Fragment key={dropdownItem.name}>
@@ -326,75 +301,28 @@ export default function Navbar() {
                                     ) : (
                                       <div
                                         onClick={(e) => [
-                                          [
-                                            e.preventDefault(),
-                                            handleDropdownToggle(
-                                              dropdownItem.name,
-                                              e
-                                            ),
-                                          ],
+                                          e.stopPropagation(),
+                                          handleToggleOpen(dropdownItem.name),
                                         ]}
                                         className={classNames(
                                           active ? "bg-black/80" : "",
-                                          "cursor-pointer  px-4 py-2  text-gray-100 text-xl rounded-md hover:bg-black/90 transition-all duration-200 flex flex-row"
+                                          "cursor-pointer  px-4 py-2 text-gray-100 text-xl rounded-md hover:bg-black/90 transition-all duration-200 flex flex-row"
                                         )}
                                       >
                                         {dropdownItem.name}{" "}
-                                        {i == 0 ? (
-                                          <FaBath
-                                            className={`my-auto ml-auto transition-all duration-100 ${
-                                              expandedDropdown ===
-                                                dropdownItem.name &&
-                                              "rotate-12 "
-                                            }`}
-                                          />
-                                        ) : i == 1 ? (
-                                          <PiScissors
-                                            className={`my-auto ml-auto transition-all duration-100 ${
-                                              expandedDropdown ===
-                                                dropdownItem.name &&
-                                              "rotate-12 "
-                                            }`}
-                                          />
-                                        ) : i == 2 ? (
-                                          <FaPaw
-                                            className={`my-auto ml-auto transition-all duration-100 ${
-                                              expandedDropdown ===
-                                                dropdownItem.name &&
-                                              "rotate-12 "
-                                            }`}
-                                          />
-                                        ) : i == 3 ? (
-                                          <FaDog
-                                            className={`my-auto ml-auto transition-all duration-100 ${
-                                              expandedDropdown ===
-                                                dropdownItem.name &&
-                                              "rotate-12 "
-                                            }`}
-                                          />
-                                        ) : i == 4 ? (
-                                          <FaCat
-                                            className={`my-auto ml-auto transition-all duration-100 ${
-                                              expandedDropdown ===
-                                                dropdownItem.name &&
-                                              "rotate-12 "
-                                            }`}
-                                          />
-                                        ) : (
-                                          <GiToothbrush
-                                            className={`my-auto ml-auto transition-all duration-100 ${
-                                              expandedDropdown ===
-                                                dropdownItem.name &&
-                                              "rotate-12 "
-                                            }`}
-                                          />
-                                        )}
+                                        <FaChevronDown
+                                          className={`my-auto ml-auto transition-all duration-100 ${
+                                            openItems.includes(
+                                              dropdownItem.name
+                                            ) && "rotate-12 "
+                                          }`}
+                                        />
                                       </div>
                                     )
                                   }
                                 </Menu.Item>
                                 {dropdownItem.dropdown &&
-                                  expandedDropdown === dropdownItem.name &&
+                                  openItems.includes(dropdownItem.name) &&
                                   dropdownItem.dropdown.map(
                                     (subDropdownItem) => (
                                       <Menu.Item key={subDropdownItem.name}>
@@ -423,11 +351,11 @@ export default function Navbar() {
               </div>
 
               {/* CTA button */}
-              <div className=" scale-125 rounded-lg px-3 py-3 CTA-hide transition-all duration-400">
-                <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0 bg-clip-text bg-white  ">
+              <div className="rounded-lg px-3 py-3">
+                <div className="flex items-center bg-clip-text bg-white">
                   <a
                     href=""
-                    className="scale-x-100 scale-y-100 inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110 duration-700"
+                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110"
                     style={{
                       background: "-webkit-linear-gradient(#9999, #555);",
                       backgroundClip: "text",
@@ -441,7 +369,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className={` mobile-menu-hide`}>
+          <Disclosure.Panel>
             <div className="px-2 pt-2 pb-3 space-y-1">
               {/* mobile */}
               {navigationData.map((navItem, i) => (
@@ -464,21 +392,14 @@ export default function Navbar() {
                       aria-haspopup={navItem.dropdown ? "true" : undefined}
                       onClick={(e) => {
                         if (!navItem.href) {
-                          [
-                            e.stopPropagation(),
-                            e.preventDefault(),
-                            handleToggleOpen(navItem.name),
-                          ]; // Ensure correct order of arguments
+                          e.stopPropagation();
+                          e.preventDefault();
+                          handleToggleOpen(navItem.name);
                         }
                       }}
                     >
                       {navItem.href ? (
-                        <a
-                          href={navItem.href}
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {navItem.name}
-                        </a>
+                        <a href={navItem.href}>{navItem.name}</a>
                       ) : (
                         <span className="flex flex-row">
                           {navItem.name}
@@ -512,7 +433,7 @@ export default function Navbar() {
                                 <FaChevronDown
                                   className={`my-auto ml-4 transition-all duration-100 ${
                                     openItems.includes(dropdownItem.name) &&
-                                    "rotate-12 "
+                                    "hover:rotate-12"
                                   }`}
                                 />
                               )}
