@@ -113,7 +113,7 @@ const navigationData = [
         name: "Tidy Up",
         dropdown: [
           {
-            name: "hello",
+            name: "Our tidy up package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, pawpad shave, scissoring of the body, sanitary shave, and berry perfume",
           },
         ],
       },
