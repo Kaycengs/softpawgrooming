@@ -242,15 +242,15 @@ export default function Navbar() {
           <div className="mx-auto max-w-fill px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               {/* Mobile menu button and company logo */}
-              <div className="relative inset-y-2 left-0 flex h-[50px] items-center ">
+              <div className="relative inset-y-0 left-0 flex h-[50px] items-center ">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="hover:rotate-12 duration-700 flex ">
+                <Disclosure.Button className="s rounded-2xl translate-y-0 translate-x-0 hover:rotate-12 duration-700 flex ">
                   <Image
                     alt="Logo"
                     src="/smalllogo.png"
-                    className="mx-auto scale-50   "
-                    height={10}
-                    width={80}
+                    className=" "
+                    height={40}
+                    width={40}
                   />
                 </Disclosure.Button>
                 <a
@@ -258,8 +258,8 @@ export default function Navbar() {
                   href="/"
                 >
                   {" "}
-                  <FaHome className=" text-gray-400" />{" "}
-                  <span className="sr-only">Open main menu</span>
+                  <FaHome className=" translate-x-3 translate-y-3 text-pink-600" />{""}
+                  <span className="right-10  sr-only">Open main menu</span>
                 </a>
               </div>
 
