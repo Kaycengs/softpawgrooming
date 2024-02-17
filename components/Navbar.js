@@ -1,17 +1,15 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { GiToothbrush } from "react-icons/gi";
 import {
-  FaBath,
-  FaCat,
+  FaBars,
   FaChevronDown,
-  FaDog,
+  FaChevronUp,
   FaHome,
-  FaPaw,
+  FaInfo,
+  FaInfoCircle,
 } from "react-icons/fa";
 import Image from "next/image";
-import { PiDogFill, PiScissors } from "react-icons/pi";
-import Link from "next/link";
+import { textAlign, textStyle } from "styled-system";
 
 const ItemWithFadeIn = ({
   item,
@@ -31,14 +29,12 @@ const ItemWithFadeIn = ({
     }, delay);
     return () => clearTimeout(timeout);
   }, [i]);
-
   const handleClick = (e) => {
     e.stopPropagation();
     if (action === "expand") {
       handleToggleOpen(item.name);
     }
   };
-
   const NestedItemWithFadeIn = ({ nestedItem, handleToggleOpen, index }) => {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -91,13 +87,13 @@ const ItemWithFadeIn = ({
   return (
     <div
       key={item.slug}
-      className={`mx-auto flex flex-co ${
+      className={`mx-auto flex flex-col ${
         itemsVisible ? "fade-in active" : "fade-in"
       }`}
       onClick={handleClick}
     >
       {action === "expand" && children}
-      {action === "Link" && <a href={item.href}>{children}</a>}
+      {action === "link" && <a href={item.href}>{children}</a>}
       {/* Render nested dropdown if it exists */}
       {item.dropdown &&
         dropdownItem &&
@@ -116,8 +112,7 @@ const navigationData = [
         name: "Bath",
         dropdown: [
           {
-            name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume",
-            href: "/",
+            name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume ",
           },
         ],
       },
@@ -126,7 +121,6 @@ const navigationData = [
         dropdown: [
           {
             name: "Our tidy up package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, pawpad shave, scissoring of the body, sanitary shave, and berry perfume",
-            href: "/stylist",
           },
         ],
       },
@@ -135,7 +129,6 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
-            href: "/somepage",
           },
         ],
       },
@@ -144,7 +137,6 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
-            href: "/stylist",
           },
         ],
       },
@@ -153,7 +145,6 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
-            href: "/",
           },
         ],
       },
@@ -162,15 +153,17 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
-            href: "/",
           },
         ],
       },
     ],
   },
+
+  ,
+  ,
+  ,
   {
     name: "Whos the stylist",
-    href: "/stylist",
   },
 ];
 
@@ -179,72 +172,83 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const [expandDropdown, setExpandDropdown] = useState(
+    navigationData.map((navItem) =>
+      navItem.dropdown ? new Array(navItem.dropdown.length).fill(false) : []
+    )
+  );
+  const [isOpen, setOpen] = useState(false);
+  const handleNavOpen = (isOpen) => {
+    setOpen(isOpen);
+  };
   const [openItems, setOpenItems] = useState([]);
 
   const handleToggleOpen = (itemName) => {
     setOpenItems((currentOpenItems) => {
       if (currentOpenItems.includes(itemName)) {
+        // Remove the item if it's already in the array
         return currentOpenItems.filter((item) => item !== itemName);
-      } else {
+      } else if (currentOpenItems.length === 0) {
+        // If there are no items, add the new one
+        return [itemName];
+      } else if (currentOpenItems.length === 1) {
+        // If there's only one item, add the new one alongside it
         return [...currentOpenItems, itemName];
+      } else {
+        // If there are two or more items, replace the last item
+        return [currentOpenItems[0], itemName];
       }
     });
   };
 
-  const renderNestedDropdown = (nestedItems) => {
-    return nestedItems.map((nestedItem, nestedIndex) => (
-      <ItemWithFadeIn
-        key={nestedIndex}
-        item={nestedItem}
-        dropdownItem={nestedItem}
-        handleToggleOpen={handleToggleOpen}
-        i={nestedIndex}
-        action={nestedItem.dropdown ? "expand" : "link"}
-        openItems={openItems}
-      >
-        <a
-          href={nestedItem.href}
-          className="text-gray-300 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium flex flex-row"
-        >
-          {nestedItem.name}
-          {nestedItem.dropdown && (
-            <FaChevronDown
-              className={`my-auto ml-4 transition-all duration-100 ${
-                openItems.includes(nestedItem.name) && "rotate-12"
-              }`}
-            />
-          )}
-        </a>
-      </ItemWithFadeIn>
-    ));
+  const [expandedDropdown, setExpandedDropdown] = useState(null);
+
+  const handleDropdownToggle = (dropdownName) => {
+    if (expandedDropdown === dropdownName) {
+      setExpandedDropdown(null); // Close if it's already open
+    } else {
+      setExpandedDropdown(dropdownName); // Open the clicked dropdown
+    }
   };
 
+  const handleDropdownClick = (navIndex, dropdownIndex) => {
+    setExpandDropdown(
+      expandDropdown.map((subArray, idx) => {
+        if (idx === navIndex) {
+          const newSubArray = [...subArray];
+          newSubArray[dropdownIndex] = !newSubArray[dropdownIndex];
+          return newSubArray;
+        }
+        return subArray;
+      })
+    );
+  };
   return (
-    <Disclosure as="nav" className="custom-navbar">
+    <Disclosure
+      as="nav"
+      className="custom-navbar bg-[#922098] absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-pink-600"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-fill px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               {/* Mobile menu button and company logo */}
-              <div className="relative inset-y-0 left-0 flex h-[50px] items-center">
+              <div className="relative inset-y-0 left-0 flex items-center ">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="flex">
+                <Disclosure.Button className="scale-50 hover:rotate-12 duration-700">
                   <Image
                     alt="Logo"
                     src="/smalllogo.png"
-                    className="h-8 w-8"
-                    height={32}
-                    width={32}
+                    height={1}
+                    width={100}
                   />
+                  <span className="sr-only">Open main menu</span>
                 </Disclosure.Button>
-                <Link href="/" className="text-4xl my-auto h-full self-center flex">
-                  <FaHome className="text-pink-600" />
-                </Link>
               </div>
 
               {/* Nav Items */}
               <div className="hidden sm:ml-6 md:block">
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 mobile-menu-button">
                   {/* Desktop */}
                   {navigationData.map((navItem, navIndex) => (
                     <Menu
@@ -252,20 +256,24 @@ export default function Navbar() {
                       className="relative inline-block text-left"
                       key={navItem.name}
                     >
-                      <div className="flex">
+                      <div className="flex right-0">
+                        {" "}
+                        {/* Add flex alignment styles here */}
                         {navItem.href ? (
-                          <a
+                          <Link
                             href={navItem.href}
                             className={classNames(
-                              "text-pink-400 rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
+                              "text-pink-400 hover:hue-rotate-180 transition-all duration-700",
+                              "rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
                             )}
                           >
                             {navItem.name}
-                          </a>
+                          </Link>
                         ) : (
                           <Menu.Button
                             className={classNames(
-                              "text-pink-400 rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize"
+                              "text-pink-400 hover:hue-rotate-180 transition-all duration-700",
+                              "rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize"
                             )}
                           >
                             {navItem.name}
@@ -275,16 +283,16 @@ export default function Navbar() {
 
                       <Transition
                         as={React.Fragment}
-                        enter="transition ease-out duration-200"
-                        enterFrom="transform opacity-0 scale-95"
+                        enter="transition ease-in duration-100"
+                        enterFrom="transform opacity-100 scale-100"
                         enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-200"
+                        leave="transition ease-in duration-500"
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute left-[50%] translate-x-[-50%] mt-5 w-[300px] origin-top-left rounded-md bg-black/80 shadow-lg shadow-black/80 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Items className="absolute left-[50%] translate-x-[-50%] mt-5 w-[300px] origin-top-left rounded-md bg-pink-600/70 shadow-xl shadow-pink-400/70 ring-1 ring-black ring-opacity-5 focus:outline-none.">
                           {navItem.dropdown &&
-                            navItem.dropdown.map((dropdownItem, i) => (
+                            navItem.dropdown.map((dropdownItem) => (
                               <Fragment key={dropdownItem.name}>
                                 <Menu.Item>
                                   {({ active }) =>
@@ -301,20 +309,24 @@ export default function Navbar() {
                                     ) : (
                                       <div
                                         onClick={(e) => [
-                                          e.stopPropagation(),
-                                          handleToggleOpen(dropdownItem.name),
+                                          [
+                                            e.preventDefault(),
+                                            handleDropdownToggle(
+                                              dropdownItem.name,
+                                              e
+                                            ),
+                                          ],
                                         ]}
                                         className={classNames(
                                           active ? "bg-black/80" : "",
-                                          "cursor-pointer  px-4 py-2 text-gray-100 text-xl rounded-md hover:bg-black/90 transition-all duration-200 flex flex-row"
+                                          "cursor-pointer  px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200 flex flex-row"
                                         )}
                                       >
                                         {dropdownItem.name}{" "}
-                                        <FaChevronDown
+                                        <FaInfoCircle
                                           className={`my-auto ml-auto transition-all duration-100 ${
-                                            openItems.includes(
-                                              dropdownItem.name
-                                            ) && "rotate-12 "
+                                            expandedDropdown ===
+                                              dropdownItem.name && "rotate-180 "
                                           }`}
                                         />
                                       </div>
@@ -322,7 +334,7 @@ export default function Navbar() {
                                   }
                                 </Menu.Item>
                                 {dropdownItem.dropdown &&
-                                  openItems.includes(dropdownItem.name) &&
+                                  expandedDropdown === dropdownItem.name &&
                                   dropdownItem.dropdown.map(
                                     (subDropdownItem) => (
                                       <Menu.Item key={subDropdownItem.name}>
@@ -351,11 +363,11 @@ export default function Navbar() {
               </div>
 
               {/* CTA button */}
-              <div className="rounded-lg px-3 py-3">
-                <div className="flex items-center bg-clip-text bg-white">
+              <div className=" scale-125 rounded-lg px-3 py-3 CTA-hide transition-all duration-400">
+                <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0 bg-clip-text bg-white  ">
                   <a
                     href=""
-                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110"
+                    className="scale-x-100 scale-y-100 inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110 duration-700"
                     style={{
                       background: "-webkit-linear-gradient(#9999, #555);",
                       backgroundClip: "text",
@@ -369,7 +381,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel>
+          <Disclosure.Panel className={` mobile-menu-hide`}>
             <div className="px-2 pt-2 pb-3 space-y-1">
               {/* mobile */}
               {navigationData.map((navItem, i) => (
@@ -392,20 +404,27 @@ export default function Navbar() {
                       aria-haspopup={navItem.dropdown ? "true" : undefined}
                       onClick={(e) => {
                         if (!navItem.href) {
-                          e.stopPropagation();
-                          e.preventDefault();
-                          handleToggleOpen(navItem.name);
+                          [
+                            e.stopPropagation(),
+                            e.preventDefault(),
+                            handleToggleOpen(navItem.name),
+                          ]; // Ensure correct order of arguments
                         }
                       }}
                     >
                       {navItem.href ? (
-                        <a href={navItem.href}>{navItem.name}</a>
+                        <a
+                          href={navItem.href}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {navItem.name}
+                        </a>
                       ) : (
                         <span className="flex flex-row">
                           {navItem.name}
                           <FaChevronDown
                             className={`my-auto ml-4 transition-all duration-100 ${
-                              openItems.includes(navItem.name) && "rotate-12"
+                              openItems.includes(navItem.name) && "rotate-180"
                             }`}
                           />
                         </span>
@@ -426,14 +445,14 @@ export default function Navbar() {
                           >
                             <a
                               href={dropdownItem.href}
-                              className=" text-gray-300 hover:bg-black/20 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium flex flex-row"
+                              className=" text-gray-300 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium flex flex-row"
                             >
                               {dropdownItem.name}
                               {dropdownItem.dropdown && (
                                 <FaChevronDown
                                   className={`my-auto ml-4 transition-all duration-100 ${
                                     openItems.includes(dropdownItem.name) &&
-                                    "hover:rotate-12"
+                                    "rotate-180 "
                                   }`}
                                 />
                               )}
