@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 import { textAlign, textStyle } from "styled-system";
 import { PiDogFill, PiScissors } from "react-icons/pi";
-import a from "next/link";
+import Link from "next/link";
 const ItemWithFadeIn = ({
   item,
   dropdownItem,
