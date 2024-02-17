@@ -1,6 +1,12 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { FaBars, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import {
+  FaBars,
+  FaChevronDown,
+  FaChevronUp,
+  FaInfo,
+  FaInfoCircle,
+} from "react-icons/fa";
 import Image from "next/image";
 import { textAlign, textStyle } from "styled-system";
 
@@ -253,7 +259,7 @@ export default function Navbar() {
                         {" "}
                         {/* Add flex alignment styles here */}
                         {navItem.href ? (
-                          <a
+                          <Link
                             href={navItem.href}
                             className={classNames(
                               "text-pink-400 hover:hue-rotate-180 transition-all duration-700",
@@ -261,7 +267,7 @@ export default function Navbar() {
                             )}
                           >
                             {navItem.name}
-                          </a>
+                          </Link>
                         ) : (
                           <Menu.Button
                             className={classNames(
@@ -316,8 +322,8 @@ export default function Navbar() {
                                         )}
                                       >
                                         {dropdownItem.name}{" "}
-                                        <FaChevronDown
-                                          className={`my-auto ml-4 transition-all duration-100 ${
+                                        <FaInfoCircle
+                                          className={`my-auto ml-auto transition-all duration-100 ${
                                             expandedDropdown ===
                                               dropdownItem.name && "rotate-180 "
                                           }`}
