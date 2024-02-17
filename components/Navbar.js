@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import { textAlign, textStyle } from "styled-system";
+import Link from "next/link";
 
 const ItemWithFadeIn = ({
   item,
