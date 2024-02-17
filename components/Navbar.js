@@ -95,6 +95,7 @@ const ItemWithFadeIn = ({
     </div>
   );
 };
+
 // Placeholder JSON data for navigation
 const navigationData = [
   {
@@ -102,21 +103,51 @@ const navigationData = [
     dropdown: [
       {
         name: "Bath",
+        dropdown: [
+          {
+            name: "hello",
+          },
+        ],
       },
       {
         name: "Tidy Up",
+        dropdown: [
+          {
+            name: "hello",
+          },
+        ],
       },
       {
         name: "Nail Trim",
+        dropdown: [
+          {
+            name: "hello",
+          },
+        ],
       },
       {
         name: "Full Grooms",
+        dropdown: [
+          {
+            name: "hello",
+          },
+        ],
       },
       {
         name: "Cats",
+        dropdown: [
+          {
+            name: "hello",
+          },
+        ],
       },
       {
         name: "Extras",
+        dropdown: [
+          {
+            name: "hello",
+          },
+        ],
       },
     ],
   },
