@@ -105,7 +105,7 @@ const navigationData = [
         name: "Bath",
         dropdown: [
           {
-            name: "hello",
+            name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume ",
           },
         ],
       },
