@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 import { textAlign, textStyle } from "styled-system";
 import { PiDogFill, PiScissors } from "react-icons/pi";
-import Link from "next/link";
+import a from "next/link";
 const ItemWithFadeIn = ({
   item,
   dropdownItem,
@@ -115,7 +115,7 @@ const navigationData = [
         dropdown: [
           {
             name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume ",
-            href: "",
+            href: "/",
           },
         ],
       },
@@ -151,7 +151,7 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
-            href: "",
+            href: "/",
           },
         ],
       },
@@ -160,7 +160,7 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
-            href: "",
+            href: "/",
           },
         ],
       },
@@ -253,14 +253,14 @@ export default function Navbar() {
                     width={100}
                   />
                 </Disclosure.Button>
-                <Link
+                <a
                   className="hover:rotate-12 duration-700 text-4xl my-auto h-full self-center flex"
                   href="/"
                 >
                   {" "}
                   <FaHome className=" text-gray-400" />{" "}
                   <span className="sr-only">Open main menu</span>
-                </Link>
+                </a>
               </div>
 
               {/* Nav Items */}
@@ -277,7 +277,7 @@ export default function Navbar() {
                         {" "}
                         {/* Add flex alignment styles here */}
                         {navItem.href ? (
-                          <Link
+                          <a
                             href={navItem.href}
                             className={classNames(
                               "text-pink-400 hover:hue-rotate-12 transition-all duration-700",
@@ -285,7 +285,7 @@ export default function Navbar() {
                             )}
                           >
                             {navItem.name}
-                          </Link>
+                          </a>
                         ) : (
                           <Menu.Button
                             className={classNames(
@@ -314,7 +314,7 @@ export default function Navbar() {
                                 <Menu.Item>
                                   {({ active }) =>
                                     dropdownItem.href ? (
-                                      <Link
+                                      <a
                                         href={dropdownItem.href}
                                         className={classNames(
                                           active ? "bg-black/80" : "",
@@ -322,7 +322,7 @@ export default function Navbar() {
                                         )}
                                       >
                                         {dropdownItem.name}
-                                      </Link>
+                                      </a>
                                     ) : (
                                       <div
                                         onClick={(e) => [
@@ -405,9 +405,9 @@ export default function Navbar() {
                                               "ml-4 cursor-pointer block px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200"
                                             )}
                                           >
-                                            <Link href={subDropdownItem.href}>
+                                            <a href={subDropdownItem.href}>
                                               {subDropdownItem.name}
-                                            </Link>
+                                            </a>
                                           </div>
                                         )}
                                       </Menu.Item>
@@ -425,7 +425,7 @@ export default function Navbar() {
               {/* CTA button */}
               <div className=" scale-125 rounded-lg px-3 py-3 CTA-hide transition-all duration-400">
                 <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0 bg-clip-text bg-white  ">
-                  <Link
+                  <a
                     href=""
                     className="scale-x-100 scale-y-100 inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110 duration-700"
                     style={{
@@ -435,7 +435,7 @@ export default function Navbar() {
                     }}
                   >
                     Request Appointment
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -473,12 +473,12 @@ export default function Navbar() {
                       }}
                     >
                       {navItem.href ? (
-                        <Link
+                        <a
                           href={navItem.href}
                           onClick={(e) => e.stopPropagation()}
                         >
                           {navItem.name}
-                        </Link>
+                        </a>
                       ) : (
                         <span className="flex flex-row">
                           {navItem.name}
@@ -503,7 +503,7 @@ export default function Navbar() {
                             action={dropdownItem.dropdown ? "expand" : "link"}
                             openItems={openItems}
                           >
-                            <Link
+                            <a
                               href={dropdownItem.href}
                               className=" text-gray-300 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium flex flex-row"
                             >
@@ -516,7 +516,7 @@ export default function Navbar() {
                                   }`}
                                 />
                               )}
-                            </Link>
+                            </a>
                           </ItemWithFadeIn>
                         ))}
                       </div>
