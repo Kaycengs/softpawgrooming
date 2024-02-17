@@ -1,15 +1,18 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { GiToothbrush } from "react-icons/gi";
 import {
-  FaBars,
+  FaBath,
+  FaCat,
   FaChevronDown,
-  FaChevronUp,
-  FaInfo,
-  FaInfoCircle,
+  FaDog,
+  FaHome,
+  FaPaw,
 } from "react-icons/fa";
 import Image from "next/image";
 import { textAlign, textStyle } from "styled-system";
-
+import { PiDogFill, PiScissors } from "react-icons/pi";
+import Link from "next/link";
 const ItemWithFadeIn = ({
   item,
   dropdownItem,
@@ -112,6 +115,7 @@ const navigationData = [
         dropdown: [
           {
             name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume ",
+            href: "",
           },
         ],
       },
@@ -120,6 +124,7 @@ const navigationData = [
         dropdown: [
           {
             name: "Our tidy up package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, pawpad shave, scissoring of the body, sanitary shave, and berry perfume",
+            href: "/stylist",
           },
         ],
       },
@@ -128,6 +133,7 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
+            href: "/somepage",
           },
         ],
       },
@@ -136,6 +142,7 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
+            href: "/stylist",
           },
         ],
       },
@@ -144,6 +151,7 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
+            href: "",
           },
         ],
       },
@@ -152,6 +160,7 @@ const navigationData = [
         dropdown: [
           {
             name: "hello",
+            href: "",
           },
         ],
       },
@@ -163,6 +172,7 @@ const navigationData = [
   ,
   {
     name: "Whos the stylist",
+    href: "/stylist",
   },
 ];
 
@@ -232,17 +242,25 @@ export default function Navbar() {
           <div className="mx-auto max-w-fill px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               {/* Mobile menu button and company logo */}
-              <div className="relative inset-y-2 left-0 flex items-center ">
+              <div className="relative inset-y-2 left-0 flex h-[50px] items-center ">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="hover:rotate-12 duration-700">
+                <Disclosure.Button className="hover:rotate-12 duration-700 flex">
                   <Image
                     alt="Logo"
                     src="/smalllogo.png"
+                    className="mx-auto"
                     height={1}
                     width={100}
                   />
-                  <span className="sr-only">Open main menu</span>
                 </Disclosure.Button>
+                <Link
+                  className="hover:rotate-12 duration-700 text-4xl my-auto h-full self-center flex"
+                  href="/"
+                >
+                  {" "}
+                  <FaHome className=" text-gray-400" />{" "}
+                  <span className="sr-only">Open main menu</span>
+                </Link>
               </div>
 
               {/* Nav Items */}
@@ -262,7 +280,7 @@ export default function Navbar() {
                           <Link
                             href={navItem.href}
                             className={classNames(
-                              "text-pink-400 hover:hue-rotate-180 transition-all duration-700",
+                              "text-pink-400 hover:hue-rotate-12 transition-all duration-700",
                               "rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
                             )}
                           >
@@ -271,7 +289,7 @@ export default function Navbar() {
                         ) : (
                           <Menu.Button
                             className={classNames(
-                              "text-pink-400 hover:hue-rotate-180 transition-all duration-700",
+                              "text-pink-400 hover:hue-rotate-12 transition-all duration-700",
                               "rounded-md px-2 py-2 text-[1rem] xl:text-lg font-medium capitalize"
                             )}
                           >
@@ -291,12 +309,12 @@ export default function Navbar() {
                       >
                         <Menu.Items className="absolute left-[50%] translate-x-[-50%] mt-5 w-[300px] origin-top-left rounded-md bg-black/80 shadow-lg shadow-black/80 ring-1 ring-black ring-opacity-5 focus:outline-none.">
                           {navItem.dropdown &&
-                            navItem.dropdown.map((dropdownItem) => (
+                            navItem.dropdown.map((dropdownItem, i) => (
                               <Fragment key={dropdownItem.name}>
                                 <Menu.Item>
                                   {({ active }) =>
                                     dropdownItem.href ? (
-                                      <a
+                                      <Link
                                         href={dropdownItem.href}
                                         className={classNames(
                                           active ? "bg-black/80" : "",
@@ -304,7 +322,7 @@ export default function Navbar() {
                                         )}
                                       >
                                         {dropdownItem.name}
-                                      </a>
+                                      </Link>
                                     ) : (
                                       <div
                                         onClick={(e) => [
@@ -318,16 +336,59 @@ export default function Navbar() {
                                         ]}
                                         className={classNames(
                                           active ? "bg-black/80" : "",
-                                          "cursor-pointer  px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200 flex flex-row"
+                                          "cursor-pointer  px-4 py-2  text-gray-100 text-xl rounded-md hover:bg-black/90 transition-all duration-200 flex flex-row"
                                         )}
                                       >
                                         {dropdownItem.name}{" "}
-                                        <FaInfoCircle
-                                          className={`my-auto ml-auto transition-all duration-100 ${
-                                            expandedDropdown ===
-                                              dropdownItem.name && "rotate-180 "
-                                          }`}
-                                        />
+                                        {i == 0 ? (
+                                          <FaBath
+                                            className={`my-auto ml-auto transition-all duration-100 ${
+                                              expandedDropdown ===
+                                                dropdownItem.name &&
+                                              "rotate-12 "
+                                            }`}
+                                          />
+                                        ) : i == 1 ? (
+                                          <PiScissors
+                                            className={`my-auto ml-auto transition-all duration-100 ${
+                                              expandedDropdown ===
+                                                dropdownItem.name &&
+                                              "rotate-12 "
+                                            }`}
+                                          />
+                                        ) : i == 2 ? (
+                                          <FaPaw
+                                            className={`my-auto ml-auto transition-all duration-100 ${
+                                              expandedDropdown ===
+                                                dropdownItem.name &&
+                                              "rotate-12 "
+                                            }`}
+                                          />
+                                        ) : i == 3 ? (
+                                          <FaDog
+                                            className={`my-auto ml-auto transition-all duration-100 ${
+                                              expandedDropdown ===
+                                                dropdownItem.name &&
+                                              "rotate-12 "
+                                            }`}
+                                          />
+                                        ) : i == 4 ? (
+                                          <FaCat
+                                            className={`my-auto ml-auto transition-all duration-100 ${
+                                              expandedDropdown ===
+                                                dropdownItem.name &&
+                                              "rotate-12 "
+                                            }`}
+                                          />
+                                        ) : (
+                                          <GiToothbrush
+                                            className={`my-auto ml-auto transition-all duration-100 ${
+                                              expandedDropdown ===
+                                                dropdownItem.name &&
+                                              "rotate-12 "
+                                            }`}
+                                          />
+                                        )}
                                       </div>
                                     )
                                   }
@@ -344,9 +405,9 @@ export default function Navbar() {
                                               "ml-4 cursor-pointer block px-4 py-2 text-sm text-gray-100 rounded-md hover:bg-black/90 transition-all duration-200"
                                             )}
                                           >
-                                            <a href={subDropdownItem.href}>
+                                            <Link href={subDropdownItem.href}>
                                               {subDropdownItem.name}
-                                            </a>
+                                            </Link>
                                           </div>
                                         )}
                                       </Menu.Item>
@@ -364,7 +425,7 @@ export default function Navbar() {
               {/* CTA button */}
               <div className=" scale-125 rounded-lg px-3 py-3 CTA-hide transition-all duration-400">
                 <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0 bg-clip-text bg-white  ">
-                  <a
+                  <Link
                     href=""
                     className="scale-x-100 scale-y-100 inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110 duration-700"
                     style={{
@@ -374,7 +435,7 @@ export default function Navbar() {
                     }}
                   >
                     Request Appointment
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -412,18 +473,18 @@ export default function Navbar() {
                       }}
                     >
                       {navItem.href ? (
-                        <a
+                        <Link
                           href={navItem.href}
                           onClick={(e) => e.stopPropagation()}
                         >
                           {navItem.name}
-                        </a>
+                        </Link>
                       ) : (
                         <span className="flex flex-row">
                           {navItem.name}
                           <FaChevronDown
                             className={`my-auto ml-4 transition-all duration-100 ${
-                              openItems.includes(navItem.name) && "rotate-180"
+                              openItems.includes(navItem.name) && "rotate-12"
                             }`}
                           />
                         </span>
@@ -442,7 +503,7 @@ export default function Navbar() {
                             action={dropdownItem.dropdown ? "expand" : "link"}
                             openItems={openItems}
                           >
-                            <a
+                            <Link
                               href={dropdownItem.href}
                               className=" text-gray-300 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium flex flex-row"
                             >
@@ -451,11 +512,11 @@ export default function Navbar() {
                                 <FaChevronDown
                                   className={`my-auto ml-4 transition-all duration-100 ${
                                     openItems.includes(dropdownItem.name) &&
-                                    "rotate-180 "
+                                    "rotate-12 "
                                   }`}
                                 />
                               )}
-                            </a>
+                            </Link>
                           </ItemWithFadeIn>
                         ))}
                       </div>

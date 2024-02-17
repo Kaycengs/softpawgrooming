@@ -31,6 +31,23 @@ body {
     text-wrap: balance;
   }
 }
-.ksdjflj{
-  background:rgb(255, 0, 0);
+.ksdjflj {
+  background: rgb(255, 0, 0);
+}
+
+.video-container {
+  overflow: hidden;
+  border-radius: 20px; /* Adjust as needed */
+  position: relative;
+  height: 100vmin;
+  width: 100vmin;
+}
+.video-iframe {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  width: 100%;
+  height: 70%;
+  border: none;
 }
