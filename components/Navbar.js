@@ -9,7 +9,6 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import Image from "next/image";
-import { textAlign, textStyle } from "styled-system";
 import Link from "next/link";
 
 const ItemWithFadeIn = ({
@@ -370,7 +369,7 @@ export default function Navbar() {
                     href=""
                     className="scale-x-100 scale-y-100 inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110 duration-700"
                     style={{
-                      background: "-webkit-linear-gradient(#9999, #555);",
+                      background: "-webkit-linear-gradient(#9999, #555)",
                       backgroundClip: "text",
                       color: "transparent",
                     }}
