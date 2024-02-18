@@ -7,6 +7,7 @@ import {
   FaHome,
   FaInfo,
   FaInfoCircle,
+  GiDogHouse,
 } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
@@ -109,50 +110,53 @@ const navigationData = [
     name: "Services",
     dropdown: [
       {
-        name: "Bath",
-        dropdown: [
+            name: "Bath",
+              dropdown: [
           {
             name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume ",
           },
         ],
       },
       {
-        name: "Tidy Up",
-        dropdown: [
+            name: "Tidy Up",
+              dropdown: [
           {
             name: "Our tidy up package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, pawpad shave, scissoring of the body, sanitary shave, and berry perfume",
           },
         ],
       },
       {
-        name: "Nail Trim",
-        dropdown: [
+       
+            name: "Nail Trim",
+              dropdown:[
           {
-            name: "hello",
+            name: "Nail trim only 15$ base price, includes clipping and filing if dog allows",
           },
         ],
       },
       {
-        name: "Full Grooms",
-        dropdown: [
+           name: "Full Grooms",
+              dropdown: [
           {
-            name: "hello",
+            name: "Our full groom package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, full body haircut, and berry perfume",
           },
         ],
       },
       {
-        name: "Cats",
-        dropdown: [
+            name: "Cats",
+              dropdown: [
           {
-            name: "hello",
+            name: "The cat bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed, nail trim, ear clean, and vanilla berry perfume",
           },
         ],
       },
       {
-        name: "Extras",
-        dropdown: [
+            name: "Extras",
+              dropdown: [
           {
-            name: "hello",
+            name: "Our extra services include: Teeth brushing 10$ , De matting fee 15$ for 15 minutes , Matting fee depends on severity, Handling fee 10$, depends on how aggressive the behavior is and how much extra time it takes, Extra desheding price varies on how impacted the coat is"
+            
+            ,
           },
         ],
       },
@@ -226,16 +230,17 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="custom-navbar bg-[#922098] absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-pink-600"
+      className="custom-navbar bg-[#922098]/50 absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-pink-600"
     >
+      
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-fill px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+          <div className="mx-auto left-0 max-w-fill px-0 sm:px-6 lg:px-8">
+            <div className=" flex h-14 items-center justify-between">
               {/* Mobile menu button and company logo */}
               <div className="relative inset-y-0 left-0 flex items-center ">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="scale-50 hover:rotate-12 duration-700">
+                <Disclosure.Button className=" translate-x-2 scale-50 hover:rotate-12 duration-700">
                   <Image
                     alt="Logo"
                     src="/smalllogo.png"
@@ -245,7 +250,7 @@ export default function Navbar() {
                   <span className="sr-only">Open main menu</span>
                 </Disclosure.Button>
               </div>
-
+                
               {/* Nav Items */}
               <div className="hidden sm:ml-6 md:block">
                 <div className="flex space-x-4 mobile-menu-button">
@@ -363,15 +368,15 @@ export default function Navbar() {
               </div>
 
               {/* CTA button */}
-              <div className=" scale-125 rounded-lg px-3 py-3 CTA-hide transition-all duration-400">
-                <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0 bg-clip-text bg-white  ">
+              <div className="hover:shadow-sm, scale-x-110 scale-y-110 inline-flex items-center justify-center px-4 py-2 border2px border-transparent text-pretty font-semibold ">
+                <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0 bg-clip-text rounded-xl duration-700  ">
                   <a
                     href=""
-                    className="scale-x-100 scale-y-100 inline-flex items-center justify-center px-4 py-2 border border-transparent text-pretty font-semibold rounded-xl hover:scale-110 duration-700"
+                    className="hover:shadow-lg hover:hue-rotate-15 hover:duration-300 text-pink-400 rounded-full duration-300 shadow-black, scale-x-110 scale-y-110 inline-flex items-center justify-center px-4 py-2 border2px border-transparent text-pretty font-semibold "
                     style={{
-                      background: "-webkit-linear-gradient(#9999, #555)",
-                      backgroundClip: "text",
-                      color: "transparent",
+                      background: "transparent",
+                      backgroundClip: "Request Appointment",
+                      color: " ",
                     }}
                   >
                     Request Appointment
@@ -398,7 +403,7 @@ export default function Navbar() {
                       className={classNames(
                         navItem.current
                           ? "bg-black/[.85] text-white"
-                          : "text-gray-300 hover:bg-black/80 hover:text-white",
+                          : "text-purple-700 shadow-sm shadow-black hover:bg-black/80 hover:text-white",
                         "block px-3 py-2 rounded-md text-base font-medium transition-all duration-200"
                       )}
                       aria-haspopup={navItem.dropdown ? "true" : undefined}
