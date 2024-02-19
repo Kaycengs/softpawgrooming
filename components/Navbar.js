@@ -110,53 +110,50 @@ const navigationData = [
     name: "Services",
     dropdown: [
       {
-            name: "Bath",
-              dropdown: [
+        name: "Bath",
+        dropdown: [
           {
             name: "Our bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, and vanilla berry perfume ",
           },
         ],
       },
       {
-            name: "Tidy Up",
-              dropdown: [
+        name: "Tidy Up",
+        dropdown: [
           {
             name: "Our tidy up package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, pawpad shave, scissoring of the body, sanitary shave, and berry perfume",
           },
         ],
       },
       {
-       
-            name: "Nail Trim",
-              dropdown:[
+        name: "Nail Trim",
+        dropdown: [
           {
             name: "Nail trim only 15$ base price, includes clipping and filing if dog allows",
           },
         ],
       },
       {
-           name: "Full Grooms",
-              dropdown: [
+        name: "Full Grooms",
+        dropdown: [
           {
             name: "Our full groom package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed if needed, nail trim, nail file, ear clean, full body haircut, and berry perfume",
           },
         ],
       },
       {
-            name: "Cats",
-              dropdown: [
+        name: "Cats",
+        dropdown: [
           {
             name: "The cat bath package includes: massaging shampoo, conditioning treatment, blowout, brush out, deshed, nail trim, ear clean, and vanilla berry perfume",
           },
         ],
       },
       {
-            name: "Extras",
-              dropdown: [
+        name: "Extras",
+        dropdown: [
           {
-            name: "Our extra services include: Teeth brushing 10$ , De matting fee 15$ for 15 minutes , Matting fee depends on severity, Handling fee 10$, depends on how aggressive the behavior is and how much extra time it takes, Extra desheding price varies on how impacted the coat is"
-            
-            ,
+            name: "Our extra services include: Teeth brushing 10$ , De matting fee 15$ for 15 minutes , Matting fee depends on severity, Handling fee 10$, depends on how aggressive the behavior is and how much extra time it takes, Extra desheding price varies on how impacted the coat is",
           },
         ],
       },
@@ -230,9 +227,8 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="custom-navbar bg-[#922098]/50 absolute z-[1000] align-center transition-all duration-1000 h-fit top-0 left-0 right-0 shadow-xl shadow-pink-600"
+      className="custom-navbar bg-[#922098]/50 absolute z-[1000] align-center transition-all duration-100 h-fit top-0 left-0 right-0 shadow-2xl shadow-pink-600/80"
     >
-      
       {({ open }) => (
         <>
           <div className="mx-auto left-0 max-w-fill px-0 sm:px-6 lg:px-8">
@@ -250,7 +246,7 @@ export default function Navbar() {
                   <span className="sr-only">Open main menu</span>
                 </Disclosure.Button>
               </div>
-                
+
               {/* Nav Items */}
               <div className="hidden sm:ml-6 md:block">
                 <div className="flex space-x-4 mobile-menu-button">
@@ -402,8 +398,8 @@ export default function Navbar() {
                     <Disclosure.Button
                       className={classNames(
                         navItem.current
-                          ? "bg-black/[.85] text-white"
-                          : "text-purple-700 shadow-sm shadow-black hover:bg-black/80 hover:text-white",
+                          ? "bg-black/[.85] text-black"
+                          : "text-black/85 shadow-sm shadow-black hover:bg-pink-600/40 hover:text-white",
                         "block px-3 py-2 rounded-md text-base font-medium transition-all duration-200"
                       )}
                       aria-haspopup={navItem.dropdown ? "true" : undefined}

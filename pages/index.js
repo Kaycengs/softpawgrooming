@@ -16,7 +16,7 @@ export default function Home() {
         <iframe
           src={embedUrl}
           frameBorder="0"
-          allow="accelerometer; autoplay; nocontrols; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; nocontrols; clipboard-write; encrypted-media; gyroscope; picture-in-picture "
           allowFullScreen
           className="video-iframe"
         ></iframe>
