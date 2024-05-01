@@ -65,7 +65,7 @@ const ItemWithFadeIn = ({
         ) : (
           <a
             href={nestedItem.href}
-            className="block text-gray-400 hover:bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium"
+            className="block text-gray-400 bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium"
           >
             - {nestedItem.name}
           </a>
@@ -164,7 +164,12 @@ const navigationData = [
   ,
   ,
   {
-    name: "Whos the stylist",
+    name: "Whos the stylist?",
+    dropdown: [
+      {
+        name: "Alayna Lucero",
+      },
+    ],
   },
 ];
 
