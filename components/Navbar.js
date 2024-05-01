@@ -65,7 +65,7 @@ const ItemWithFadeIn = ({
         ) : (
           <a
             href={nestedItem.href}
-            className="block text-gray-400 bg-black/80 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium"
+            className="block text-gray-400 bg-black/70 hover:text-white transition-all duration-200 px-3 py-2 rounded-md text-base font-medium"
           >
             - {nestedItem.name}
           </a>
@@ -269,7 +269,7 @@ export default function Navbar() {
                           <Link
                             href={navItem.href}
                             className={classNames(
-                              "text-pink-400 hover:hue-rotate-180 transition-all duration-700",
+                              "text-pink-400 hover:hue-rotate-90 transition-all duration-700",
                               "rounded-md px-3 py-2 text-[1rem] xl:text-lg font-large capitalize"
                             )}
                           >
@@ -372,12 +372,13 @@ export default function Navbar() {
               <div className="hover:shadow-sm, scale-x-110 scale-y-110 inline-flex items-center justify-center px-4 py-2 border2px border-transparent text-pretty font-semibold ">
                 <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0 bg-clip-text rounded-xl duration-700  ">
                   <a
-                    href=""
-                    className="hover:shadow-lg hover:hue-rotate-15 hover:duration-300 text-pink-400 rounded-full duration-300 shadow-black, scale-x-110 scale-y-110 inline-flex items-center justify-center px-4 py-2 border2px border-transparent text-pretty font-semibold "
+                    href="https://www.facebook.com/people/Soft-paws-grooming/100095306074185/?mibextid=LQQJ4d"
+                    className="hover:shadow-md hover:hue-rotate-90 hover:duration-500 text-pink-400 rounded-full duration-300 shadow-black, scale-x-100 scale-y-100 inline-flex items-center justify-center px-4 py-2 border2px border-transparent text-pretty font-semibold "
                     style={{
                       background: "transparent",
                       backgroundClip: "Request Appointment",
-                      color: " ",
+                      color: " "
+                      ,
                     }}
                   >
                     Request Appointment
